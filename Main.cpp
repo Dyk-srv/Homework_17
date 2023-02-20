@@ -9,13 +9,9 @@ double mean(double num1, double num2) {
 
 void rand_fill_arr(int arr[], int length, int a, int b) {
 	srand(time(NULL));
-	std::cout << "Array filled with random numbers [" << a << "..." << b << "]:\n";
-	std::cout << '[';
 	for (int i = 0; i < length; i++) {
 		arr[i] = rand() % (b - a + 1) + a;
-		std::cout << arr[i] << ", ";
 	}
-	std::cout << "\b\b]\n";
 }
 
 double mean_arr(int arr[], int length) {
@@ -25,19 +21,23 @@ double mean_arr(int arr[], int length) {
 	return double(sum) / length;
 }
 
-void powers(int N, int M) {
-	for (int i = 0; i <= M; i++)
-		std::cout << N << '^' << i << " = " << pow(N, i) << '\n';
-}
-
-void positive_arr(int arr[], int length) {
-	std::cout << "Result array:\n";
+void print_arr(int arr[], int length) {
 	std::cout << '[';
 	for (int i = 0; i < length; i++) {
-		arr[i] = arr[i] < 0 ? abs(arr[i]) : arr[i];
 		std::cout << arr[i] << ", ";
 	}
 	std::cout << "\b\b]\n";
+}
+
+void powers(int N, int M) {
+		for (int i = 0; i <= M; i++)
+			std::cout << N << '^' << i << " = " << pow(N, i) << '\n';
+	}
+
+void positive_arr(int arr[], int length) {
+	for (int i = 0; i < length; i++) {
+		arr[i] = arr[i] < 0 ? abs(arr[i]) : arr[i];
+	}
 }
 
 int main() {
@@ -55,6 +55,8 @@ int main() {
 	// 17.2 Ariphmetic mean of array elements
 	std::cout << "\n\t17.2 Ariphmetic mean of array elements\n";
 	rand_fill_arr(Arr, 10, 1, 100); // [1...100]
+	std::cout << "Array filled with random numbers [1...100]:\n";
+	print_arr(Arr, 10);
 	std::cout << "\Ariphmetic mean of array elements = " << mean_arr(Arr, size) << '\n';
 
 
@@ -71,7 +73,11 @@ int main() {
 	// 17.4 Array, be positive!
 	std::cout << "\n\t17.4 Array, be positive!\n";
 	rand_fill_arr(Arr, 10, -10, 10); // [-10...10]
+	std::cout << "Array filled with random numbers [-10...10]:\n";
+	print_arr(Arr, 10);
 	positive_arr(Arr, 10);
+	std::cout << "Result array:\n";
+	print_arr(Arr, 10);
 
 	return 0;
 }
